@@ -12,11 +12,12 @@ var express     = require("express"),
 var indexRoutes = require("./routes/index");    
 var campgroundRoutes = require("./routes/campgrounds");    
 var commentRoutes = require("./routes/comments");    
-   
+
+// process.env.DATABASEURL="mongodb://loc:loc123@ds227654.mlab.com:27654/locyelpcamp"
 
 mongoose.set('useFindAndModify', false);    
-//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true });
-mongoose.connect("mongodb://loc:loc123@ds227654.mlab.com:27654/locyelpcamp", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+// mongoose.connect("mongodb://loc:loc123@ds227654.mlab.com:27654/locyelpcamp", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
